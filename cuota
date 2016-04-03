@@ -1,0 +1,28 @@
+#!/bin/bash
+
+function parse_json () {
+    echo $response | grep -Po '"?'$1'"?:[ "]*\K[^",}]*'
+}
+
+if [ "$#" -ne 1 ]; then
+	echo "Usage: cuota user"
+	exit 1
+fi
+
+read -s -p "Password:" password
+
+usuario=$1
+password=$(echo -en "$password" | base64)
+
+response=$(curl -s -k "https://cuota.uci.cu/php/cuota.php" --data "username=$usuario&userpassword=$password")
+response=$(echo -en $response)
+
+if [ "$(parse_json success)" == "false" ]; then
+    echo -en "\n$(parse_json msg)\n"
+    exit 1
+fi
+
+cuota=$(echo $(parse_json cuota) | sed 's/\./,/')
+cuota_usada=$(echo $(parse_json cuota_usada) | sed 's/\./,/')
+
+printf "\n%s => %.2f/%d Mb\n" "$usuario" "$cuota_usada" "$cuota"
