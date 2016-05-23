@@ -122,6 +122,6 @@ export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
 
 GIT_PROMPT_ONLY_IN_REPO=1
-source ~/bash-git-prompt-master/gitprompt.sh
+#source ~/bash-git-prompt-master/gitprompt.sh
 #_byobu_sourced=1 . /usr/bin/byobu-launch 2>/dev/null || true
 
