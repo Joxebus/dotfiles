@@ -9,7 +9,7 @@
     set	     = add --all
     reset    = reset
     nuke     = !git reset --hard HEAD && git clean -xfd
-
+    save     = stash
 #commit
     put      = commit --allow-empty                       --allow-empty-message --message ''
     amend    = commit --allow-empty --amend               --allow-empty-message --reuse-message=HEAD --reset-author
