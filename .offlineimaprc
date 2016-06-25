@@ -24,7 +24,7 @@ maxconnections = 1
 type = IMAP
 remoteuser = rssanjuan@uci.cu
 remotehost = imap.uci.cu
-remotepass = pullm3under.DARTHVADER2016
+remotepass = 
 realdelete = no
 nametrans = lambda folder: {'[UCi]/Drafts':    'drafts',
                             '[UCi]/Sent Mail': 'sent',
