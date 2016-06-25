@@ -2,8 +2,7 @@
 # for examples
 
 # If not running interactively, don't do anything
-case $- in
-    *i*) ;;
+case $- in *i*) ;;
       *) return;;
 esac
 
@@ -95,33 +94,41 @@ if ! shopt -oq posix; then
 fi
 
 #Command's alias
-alias ..1='cd ..'
-alias ..2='cd ../..'
-alias ..3='cd ../../..'
-alias ..4='cd ../../../..'
-alias ls='ls -l --sort=extension --color=auto'
+alias .1='cd ..'
+alias .2='cd ../..'
+alias .3='cd ../../..'
+alias .4='cd ../../../..'
+alias ls='ls -lh --sort=extension --color=auto'
+alias lc='ls -lhC --sort=extension --color=auto'
 alias ip='ifconfig | grep Bcast'
-alias cmatrix='cmatrix -b'
 alias vimr='vim ~/.vimrc'
-alias bashr='vim ~/.bashrc'
-alias mongod='mongod --dbpath ~/data/db'
-alias mail='mutt'
-alias check-mail='offlineimap'
-alias refresh='source $HOME/.bashrc'
-alias workdir='cd /home/sigfried/development/isoFact/workspace'
+alias bashr='vim ~/.bashrc && source ~/.bashrc'
+#included in init.d
+#alias mongod='mongod --dbpath ~/data/db'
+alias dev='cd /home/sigfried/development/isoFact/workspace'
+alias mid='cd /media/sigfried/Midgard'
+alias angular-doc='http-server ~/Downloads/angular-1.5.3/docs/'
+alias search='apt-cache search'
+alias sum_md5='find . -exec md5sum '{}' \; >> md5.txt'
+alias ports='netstat -tlnap'
+alias total-space='du -h'
+alias update='sudo apt-get update && sudo apt-get upgrade'
+alias install='sudo apt-get install'
+alias nginxrestart='sudo service nginx restart'
+alias nginxstart='sudo service nginx start'
+alias fwup='sudo iptables-apply /home/sigfried/system_configs/rules.v4'
+alias iptlist='sudo iptables -L'
+alias rm='rm -rfi'
 function mkdircd () { mkdir -p "$@" && eval cd "\"\$$#\""; }
 
 PS1=" \[\e[1;37m\][\[\e[1;36m\] \d \[\e[1;31m\]\T \[\e[1;37m\]] \n\[\e[1;37m\] [ \[\e[1;34m\]\u@\H \[\e[1;32m\]\w \[\e[1;37m\]]\[\e[1;35m\] λ \[\e[0;37m\]"
-
-REPREPRO_BASE_DIR=/home/sigfried/repo_iso
 
 export EDITOR=vim
 export VISUAL=vim
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
+export REPREPRO_BASE_DIR=/home/sigfried/reprepro
 
 GIT_PROMPT_ONLY_IN_REPO=1
-#source ~/bash-git-prompt-master/gitprompt.sh
-#_byobu_sourced=1 . /usr/bin/byobu-launch 2>/dev/null || true
-
+source ~/bash-git-prompt-master/gitprompt.sh
