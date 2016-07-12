@@ -22,7 +22,7 @@ if [ "$(parse_json success)" == "false" ]; then
     exit 1
 fi
 
-cuota=$(echo $(parse_json cuota) | sed 's/\./,/')
-cuota_usada=$(echo $(parse_json cuota_usada) | sed 's/\./,/')
+cuota=$(echo $(parse_json cuota) )
+cuota_usada=$(echo $(parse_json cuota_usada) )
 
-printf "\n%s => %.2f/%d Mb\n" "$usuario" "$cuota_usada" "$cuota"
+printf "\n%s => %.2f/%d Mb\n" "$usuario" "$cuota_usada" "$cuota" 
