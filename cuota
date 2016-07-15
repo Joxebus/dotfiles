@@ -27,7 +27,4 @@ cuota_usada=$(echo $(parse_json cuota_usada) )
 parsed_cuota=$(echo $cuota_usada | sed 's/\./,/')
 cuota_restante=$(( cuota - parsed_cuota ))
 
-echo $parsed_cuota
-
 printf "\n%s => %.2f/%d Mb\n" "$usuario" "$cuota_usada" "$cuota" 
-printf "\n%s => %.2f Mb\n" "Cuota restante" "$cuota_restante"
