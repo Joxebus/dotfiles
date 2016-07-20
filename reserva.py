@@ -5,6 +5,7 @@ import getpass
 import string
 import datetime
 import json
+import sys
 
 import requests
 import requests.packages.urllib3
@@ -29,8 +30,8 @@ def dates_range(max_range=31):
     return date_range
 
 
-def make_reservations(session):
-    username = raw_input('User name: ')
+def make_reservations(session, username):
+    
     password = getpass.getpass()
 
     try:
@@ -61,10 +62,9 @@ def make_reservations(session):
         print e
 
 
-def consultar_menu(session):
+def consultar_menu(session, username):
     requests.packages.urllib3.disable_warnings()
 
-    username = raw_input('User name: ')
     password = getpass.getpass()
 
     try:
@@ -80,9 +80,11 @@ def consultar_menu(session):
 
 
 def main():
+    
     s = requests.session()
     opcion = -1
     print 'Qué desea hacer?'
+    username = sys.argv[1]
     while opcion != 3:
         menu_app()
         try:
@@ -91,14 +93,14 @@ def main():
             print 'Introduzca un valor numérico \n'
             continue
         if opcion == 1:
-            consultar_menu(s)
+            consultar_menu(s, username)
         elif opcion == 2:
-            make_reservations(s)
+            make_reservations(s, username)
         elif opcion == 3:
             print 'Au revoir'
             exit(0)
     else:
-        print 'Seleccione una opcion\n'
+        print 'Seleccione una opción\n'
 
 
 def menu_app():
@@ -108,4 +110,9 @@ def menu_app():
 
 
 if __name__ == '__main__':
-    main()
+    if len(sys.argv) < 2:
+        print 'Usage: reserva username'
+        exit(0)
+    else: 
+        main()
+
