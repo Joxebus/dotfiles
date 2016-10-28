@@ -5,7 +5,6 @@ if [ $USER != "root"  ]; then
 fi
 
 if [ "$1" = "uci" ]; then
-   echo "deb http://mint.mes.edu.cu/MINT/mint rosa main import upstream romeo backport" > /etc/apt/sources.list
    echo "deb http://ubuntu.uci.cu/ubuntu trusty main restricted universe multiverse" >> /etc/apt/sources.list
    echo "deb http://ubuntu.uci.cu/ubuntu trusty-security main restricted universe multiverse" >> /etc/apt/sources.list
    echo "deb http://ubuntu.uci.cu/ubuntu trusty-updates main restricted universe multiverse" >> /etc/apt/sources.list

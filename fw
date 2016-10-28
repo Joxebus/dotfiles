@@ -60,7 +60,7 @@ elif [ "$1" = "savesail" ]; then
 	iptables -A OUTPUT -d 10.0.0.1/32 -p tcp -m string --string "es-static0.infojobs." --algo kmp -j REJECT --reject-with tcp-reset 
 	iptables -A OUTPUT -d 10.0.0.1/32 -p tcp -m string --string "adf.ly" --algo kmp -j REJECT --reject-with tcp-reset
 	iptables -A OUTPUT -d 10.0.0.1/32 -p tcp -m string --string "gstatic.com" --algo kmp -j REJECT --reject-with tcp-reset
-    	iptables -A OUTPUT -d 10.0.0.1/32 -p tcp -m string --string "cloudfront.net" --algo kmp -j REJECT --reject-with tcp-reset
+   	iptables -A OUTPUT -d 10.0.0.1/32 -p tcp -m string --string "cloudfront.net" --algo kmp -j REJECT --reject-with tcp-reset
 	iptables -A OUTPUT -d 10.0.0.1/32 -p tcp -m string --string "zotero.org" --algo kmp -j REJECT --reject-with tcp-reset
 	iptables -A OUTPUT -d 10.0.0.1/32 -p tcp -m string --string "googleusercontent.com" --algo kmp -j REJECT --reject-with tcp-reset
 	iptables -A OUTPUT -d 10.0.0.1/32 -p tcp -m string --string "gvt1.com" --algo kmp -j REJECT --reject-with tcp-reset

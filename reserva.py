@@ -1,6 +1,5 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*
-# TODO : When password or user are wrong raises a nasty exception
 import getpass
 import string
 import datetime
@@ -57,7 +56,6 @@ def make_reservations(session, username):
             print 'Reservacion exitosa ;)'
         else:
             print 'Ha ocurrido un error al tratar de reservar, inténtelo de nuevo'
-
     except (HTTPError, ConnectionError, SSLError, Timeout) as e:
         print e
 
@@ -72,11 +70,23 @@ def consultar_menu(session, username):
         r = session.get('http://reserva.uci.cu/menu/', timeout=0.60)
         tree = html.fromstring(r.content)
         root_element = tree.xpath('//div[@class="span4"]')
-        parse_menu(root_element)
-
+        
+        if root_element == []:
+            print 'No hay menús que mostrar'
+        else:
+            parse_menu(root_element)
+        
         res.raise_for_status()
-    except (HTTPError, ConnectionError, SSLError, Timeout) as e:
+    except (HTTPError, ConnectionError) as e:
+        print 'Debe estar on-line para consultar el menú ;)'
         print e
+    except (SSLError) as e:
+        print 'Usuario o contrasenha inválidos'
+        print e
+    except Timeout as e:
+        print 'El servidor está demorando en responder, inténtelo luego'
+        print e
+        
 
 
 def main():
