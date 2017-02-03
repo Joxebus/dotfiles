@@ -54,8 +54,6 @@ esac
 : ${ARCH:="$(dpkg --print-architecture)"}
 #: ${ARCH:="i386"}
 
-
-
 NAME="$DIST"
 if [ -n "${ARCH}" ]; then
     NAME="$NAME-$ARCH"
@@ -83,7 +81,7 @@ elif $(echo ${NOVA_SUITES[@]} | grep -q $DIST); then
     export MIRRORSITE="http://$NOVA_MIRROR"
     export DEBOOTSTRAPOPTS=("${DEBOOTSTRAPOPTS[@]}" "--keyring=/usr/share/keyrings/nova-archive-keyring.gpg")
     if [ $DIST = "2015" ]; then
-        export MIRRORSITE="$MIRRORSITE/nova/2015"
+        export MIRRORSITE="$MIRRORSITE/nova"
         export COMPONENTS="principal extendido"
     fi
 else

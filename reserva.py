@@ -11,7 +11,7 @@ import requests.packages.urllib3
 from lxml import html
 from requests.exceptions import HTTPError, ConnectionError, SSLError, Timeout
 
-
+#TODO: When printing, expect for user to print next days menus
 def parse_menu(root_element):
     for element in root_element:
         day = element.xpath('div[@class="thumbnail"]/p/text()')

@@ -93,42 +93,8 @@ if ! shopt -oq posix; then
   fi
 fi
 
-#Command's alias
-alias .1='cd ..'
-alias .2='cd ../..'
-alias .3='cd ../../..'
-alias .4='cd ../../../..'
-alias ls='ls -lh --sort=extension --color=auto'
-alias lc='ls -lhC --sort=extension --color=auto'
-alias ip='ifconfig | grep Bcast'
-alias vimr='vim ~/.vimrc'
-alias bashr='vim ~/.bashrc && source ~/.bashrc'
-#included in init.d
-#alias mongod='mongod --dbpath ~/data/db'
-alias dev='cd /home/sigfried/development/isoFact/workspace'
-alias mid='cd /media/sigfried/Midgard'
-alias angular-doc='http-server ~/Downloads/angular-1.5.3/docs/'
-alias search='apt-cache search'
-alias sum_md5='find . -exec md5sum '{}' \; >> md5.txt'
-alias ports='netstat -tlnap'
-alias total-space='du -h'
-alias update='sudo apt-get update && sudo apt-get upgrade'
-alias install='sudo apt-get install'
-alias nginxrestart='sudo service nginx restart'
-alias nginxstart='sudo service nginx start'
-alias fwup='sudo iptables-apply /home/sigfried/system_configs/rules.v4'
-alias iptlist='sudo iptables -L'
-alias rm='rm -rfi'
-function mkdircd () { mkdir -p "$@" && eval cd "\"\$$#\""; }
-
-PS1=" \[\e[1;37m\][\[\e[1;36m\] \d \[\e[1;31m\]\T \[\e[1;37m\]] \n\[\e[1;37m\] [ \[\e[1;34m\]\u@\H \[\e[1;32m\]\w \[\e[1;37m\]]\[\e[1;35m\] λ \[\e[0;37m\]"
-
-export EDITOR=vim
-export VISUAL=vim
-export LC_ALL=en_US.UTF-8
-export LANG=en_US.UTF-8
-export LANGUAGE=en_US.UTF-8
-export REPREPRO_BASE_DIR=/home/sigfried/reprepro
-
-GIT_PROMPT_ONLY_IN_REPO=1
-source ~/bash-git-prompt-master/gitprompt.sh
+source ~/.bash_functions
+source ~/.bash_aliases
+source ~/.bash_colors
+source ~/.prompt_command
+export PROMPT_COMMAND="prompt_command"
