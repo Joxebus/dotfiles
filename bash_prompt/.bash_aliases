@@ -5,12 +5,14 @@ alias ..4='cd ../../../..'
 alias ls='ls -lFh --sort=extension --color=auto'
 alias lc='ls -lhC --sort=extension --color=auto'
 alias ip='ifconfig | grep Bcast'
+#Configuration files.
 alias vimr='vim ~/.vimrc'
 alias bashr='vim ~/.bashrc && source ~/.bashrc'
+alias basha='vim ~/.bash_aliases && source ~/.bashrc'
+alias bashf='vim ~/.bash_functions && source ~/.bashrc'
 alias esl='sudo vim /etc/apt/sources.list'
-#included in init.d
-#alias mongod='mongod --dbpath ~/data/db'
 #Develop's alias
+alias type-tutor='gtypist -b'
 alias dev='cd /home/sigfried/development/isoFact/workspace'
 alias midgard='cd /media/sigfried/Midgard'
 #
@@ -47,6 +49,5 @@ export REPREPRO_CONFIG_DIR=/home/sigfried/reprepro/conf
 
 GIT_PROMPT_ONLY_IN_REPO=1
 source ~/bash-git-prompt-master/gitprompt.sh
-source ~/development/bash_prompt/bash_prompt-master/prompt_command
 
 alias find_lost_souls="nmap -n  -p3128 10.8.0.0/16 --open --oG - -T4 | grep squid | grep -Po 'Host: \K\d.*?(?= )' | xargs -n 1 -I host bash -c 'if curl --proxy1.0 host:3128 --silent --head http://www.google.com/ | grep \"Location:http://www.google.com.cu/\" > /dev/null ; then echo host; fi'"
