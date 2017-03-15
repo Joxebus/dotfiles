@@ -44,12 +44,9 @@ def make_reservations(session, username):
                     {'event': '1', 'confirmed': 0}, {'event': '2', 'confirmed': 0}],
                             'date': date.strftime('%d-%m-%Y')})
 
-        # print json_container
         reserve_json = json.JSONEncoder().encode(json_container)
-        # print reserve_json
         params = {'data': reserve_json}
         headers = {'content-type': 'application/json'}
-        # print params['data']
         reserve = session.post('http://reserva.uci.cu/reservar', params=params, headers=headers)
 
         if reserve.json()['success']:
@@ -79,15 +76,11 @@ def consultar_menu(session, username):
         res.raise_for_status()
     except (HTTPError, ConnectionError) as e:
         print 'Debe estar on-line para consultar el menú ;)'
-        print e
     except (SSLError) as e:
         print 'Usuario o contrasenha inválidos'
-        print e
     except Timeout as e:
         print 'El servidor está demorando en responder, inténtelo luego'
-        print e
         
-
 
 def main():
     
@@ -109,8 +102,8 @@ def main():
         elif opcion == 3:
             print 'Au revoir'
             exit(0)
-    else:
-        print 'Seleccione una opción\n'
+        else:
+            print 'Seleccione una opción\n'
 
 
 def menu_app():
@@ -125,4 +118,3 @@ if __name__ == '__main__':
         exit(0)
     else: 
         main()
-
