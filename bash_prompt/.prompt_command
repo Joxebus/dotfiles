@@ -81,10 +81,10 @@ function prompt_command {
                 # Changes to working tree
                 git_text="${Red} $(__git_ps1 "{%s}") ${Color_Off}"
             fi
-            git_ahead=$(git status | awk '/Your branch is ahead/{print "→" $8 " "}\
-                /Your branch is behind/{print $7 "← "}\
-                /diverged/,/respectively/{if ($0 ~ /respectively/) print $5 "←→" $3 " "}')
-            git_text="${git_text}${Yellow}${git_ahead%→*}${Red}${git_ahead#*←}${Color_Off}"
+            git_ahead=$(git status | awk '/Your branch is ahead/{print "↑" $8 " "}\
+                /Your branch is behind/{print $7 "↓"}\
+                /diverged/,/respectively/{if ($0 ~ /respectively/) print $5 "↕" $3 " "}')
+            git_text="${git_text}${Yellow}${git_ahead%${GIT_UP_ARROW}*}${Red}${git_ahead#*${GIT_DOWN_ARROW}}${Color_Off}"
         fi
     else
         # prompt component when not in git
@@ -95,24 +95,8 @@ function prompt_command {
     local prompt_char=${exit_status_text}
     local pwd_text="$(pwd | perl -pe "s|^$HOME|~|")"
 
-    local tmux_text tmux_session tmux_group num_tmux_attached_clients
-    local num_tmux_group_clients num_tmux_clients
-    if which tmux &> /dev/null && [[ -n $TMUX ]]; then
-        tmux_session=$(tmux display-message -p '#S')
-        num_tmux_attached_clients=$(tmux list-clients -t ${tmux_session} | wc -l)
-        tmux_group=$(tmux list-sessions | grep "^${tmux_session}:" | grep -o "(group [0-9]*)" | grep -o "[0-9]*")
-        num_tmux_group_clients=$(tmux list-sessions | grep "group ${tmux_group}" | wc -l)
-        # The main session will be counted in both attached clients and groups:
-        # FIXME: this seems to be bad now?!
-        #let num_tmux_group_clients-=1
-        num_tmux_clients=$((${num_tmux_attached_clients} + ${num_tmux_group_clients}))
-        if [[ ${num_tmux_clients} -gt 1 ]]; then
-            tmux_text="${Yellow}⎚ ${num_tmux_clients} ${Color_Off}"
-        fi
-    fi
-
     local remove_color_codes_regex="s/\\\\\[\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[m|K]\\\\\]//g"
-    local length_elements=$(echo -e "${pwd_text}${virtual_env_text}${git_text}${tmux_text}${new_updates}${date_text}" | perl -pe $remove_color_codes_regex)
+    local length_elements=$(echo -e "${pwd_text}${virtual_env_text}${git_text}${new_updates}${date_text}" | perl -pe $remove_color_codes_regex)
     local rule_length=$(($COLUMNS - ${#length_elements} - 1))
 
     local rule
