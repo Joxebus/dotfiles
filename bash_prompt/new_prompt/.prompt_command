@@ -31,7 +31,7 @@ function _repeat_chars {
     local temp_str=$(_padding ${size})
     echo ${temp_str// /${char}}
 }
-##TODO: User is git repo from bash git
+
 if ! __git_ps1 &> /dev/null; then
     # Redefine __git_ps1 to print a helpful warning if it's not installed
     function __git_ps1 {
@@ -58,7 +58,7 @@ function prompt_command {
 
     local virtual_env_text=""
     if [[ -n $VIRTUAL_ENV ]]; then
-        virtual_env_text="${DarkGray}$(basename $VIRTUAL_ENV)${Color_Off}"
+        virtual_env_text="${DarkGray} $(basename $VIRTUAL_ENV)${Color_Off}"
     fi
 
     local git_text git_ahead
@@ -68,7 +68,20 @@ function prompt_command {
             # we're in the git directory!
             git_text="${Purple}$(__git_ps1) ${Color_Off}"
         else
-            git_text=$(updatePrompt)
+            if git status | grep "nothing to commit" > /dev/null 2>&1; then
+                # Clean repository - nothing to commit
+                git_text="${Green} $(__git_ps1 "(%s)") ${Color_Off}"
+            elif git status | grep "nothing added to commit but untracked files present" > /dev/null 2>&1; then
+                # No changes but files to add
+                git_text="${Cyan} $(__git_ps1 "[%s]") ${Color_Off}"
+            else
+                # Changes to working tree
+                git_text="${Red} $(__git_ps1 "[%s]") ${Color_Off}"
+            fi
+            git_ahead=$(git status | awk '/Your branch is ahead/{print "↑" $8 " "}\
+                /Your branch is behind/{print $7 "↓"}\
+                /diverged/,/respectively/{if ($0 ~ /respectively/) print $5 "↕" $3 " "}')
+            git_text="${git_text}${Green}${git_ahead#*}${Color_Off}"
         fi
     else
         # prompt component when not in git
@@ -80,7 +93,7 @@ function prompt_command {
     local pwd_text="$(pwd | perl -pe "s|^$HOME|~|")"
 
     local remove_color_codes_regex="s/\\\\\[\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[m|K]\\\\\]//g"
-    local length_elements=$(echo -e "${pwd_text}${virtual_env_text} ${git_text} ${actualIP}${date_text}" | perl -pe $remove_color_codes_regex)
+    local length_elements=$(echo -e "${pwd_text}${virtual_env_text}${git_text}${actualIP}${date_text}" | perl -pe $remove_color_codes_regex)
     local rule_length=$(($COLUMNS - ${#length_elements} - 1))
 
     local rule
@@ -95,8 +108,10 @@ function prompt_command {
         pwd_text="…${pwd_text:$((${rule_length} * -1))}"
         rule=""
     fi
+    local NEW_PROMPT=$(updatePrompt)
+    echo $NEW_PROMPT
     pwd_text=${BBlue}${pwd_text}${Color_Off}
-    local line_1="${pwd_text}${virtual_env_text} ${git_text} ${rule}${actualIP}${date_text}"
+    local line_1="${pwd_text}${virtual_env_text}${git_text}${rule}${actualIP}${date_text}"
     local line_2="${host_text} ${prompt_char} "
     PS1="\n${line_1}\n${line_2}"
 }

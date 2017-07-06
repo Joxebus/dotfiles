@@ -6,6 +6,13 @@ if [ "$1" = "internet" ]; then
 	npm config set https-proxy=http://localhost:3131
 	npm config set prefix "~/.npmglobal"
 	npm config set registry "http://registry.npmjs.com"
+elif [ "$1" = "direct_internet" ]; then
+	export https_proxy="luis.guerra:1234567890Lg*@proxy.cfg.desoft.cu:8080"
+	export http_proxy="luis.guerra:1234567890Lg*@proxy.cfg.desoft.cu:8080"
+	npm config set proxy=http://luis.guerra:1234567890Lg*@proxy.cfg.desoft.cu:8080
+	npm config set https-proxy=http://luis.guerra:1234567890Lg*@proxy.cfg.desoft.cu:8080
+	npm config set prefix "~/.npmglobal"
+	npm config set registry "http://registry.npmjs.com"
 elif [ "$1" = "local" ]; then
 	npm config set proxy=http://localhost:3131
 	npm config set https-proxy=http://localhost:3131
@@ -28,5 +35,5 @@ elif [ "$1" = "-h" ]; then
 	echo 'options: [internet|local|university|internet_juan :)]'
 	echo '-h show this little help'
 else
-	echo 'Please, select local, internet or university'
+	echo 'Please, select local | internet | university | direct_internet'
 fi	
