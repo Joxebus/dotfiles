@@ -15,7 +15,7 @@
 # NOTE colours will just fail silently if not present aside from the intial
 # warning that .bash_colours is missing.
 source $HOME/.bash_colors
-source $HOME/gitprompt
+source $HOME/.gitprompt
 
 function _padding {
     # Creates a string of spaces of the passed size
