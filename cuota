@@ -1,5 +1,5 @@
 #!/bin/bash
-
+#Créditos @Luis Daniel Sierra Correderas
 function parse_json () {
     echo $response | grep -Po '"?'$1'"?:[ "]*\K[^",}]*'
 }
