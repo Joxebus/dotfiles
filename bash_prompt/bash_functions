@@ -1,24 +1,26 @@
-function md() { 
- mkdir -p "$@" && eval cd "\"\$$#\""; 
+md() {
+   mkdir -p "$@" && eval cd "\"\$$#\"";
 }
 
-_pip_completion()
-{
+how() {
+  cat "$HOME/.bash_aliases" | grep "$@";
+}
+
+_pip_completion() {
  COMPREPLY=( $( COMP_WORDS="${COMP_WORDS[*]}" \
  COMP_CWORD=$COMP_CWORD \
  PIP_AUTO_COMPLETE=1 $1 ) )
 }
 complete -o default -F _pip_completion pip
 
-add_alias ()
-{
+add_alias () {
    local name=$1 value="$2"
    echo alias $name=\'$value\' >>~/.bash_aliases
    eval alias $name=\'$value\'
    alias $name
 }
 
-function extract_audio() {
+extract_audio() {
     if [ -z "$1" ]; then
         echo "Usage: extract_audio input_file output_file.mp3 time_start shrink_length"
     else
@@ -26,7 +28,7 @@ function extract_audio() {
     fi
 }
 
-function extract {
+extract() {
  if [ -z "$1" ]; then
     # display usage if no parameters given
     echo "Usage: extract <path/file_name>.<zip|rar|bz2|gz|tar|tbz2|tgz|Z|7z|xz|ex|tar.bz2|tar.gz|tar.xz>"
@@ -69,3 +71,5 @@ man() {
 		LESS_TERMCAP_us="$(printf '\e[1;32m')" \
 		man "$@"
 }
+
+# vim: set filetype=sh :
