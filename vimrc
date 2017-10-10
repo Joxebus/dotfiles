@@ -3,6 +3,8 @@ set nocompatible "Required for pathogen
 execute pathogen#infect()
 syntax on
 filetype plugin indent on
+"Set 256 colors support neccesary for Dracula theme
+set t_Co=256
 
 "Settings for tabs and spaces
 set tabstop=2 "number of visual spaces for TAB
@@ -14,7 +16,7 @@ set cursorline
 set wildmenu "Autocomplete directories & files when editing AWESOME!!
 set number
 filetype indent on "load specific filetype indent
-colorscheme torte 
+color dracula
 
 "Searching
 set incsearch "search as characters are entered
@@ -85,10 +87,10 @@ endfunction
 set laststatus=2
 set statusline=
 set statusline+=%8*\ [%n]                                " buffernr
-set statusline+=%0*\(%{GitInfo()})                      " Git Branch name
+set statusline+=%0*\(%{GitInfo()})                       " Git Branch name
 set statusline+=%8*\ %<%F\\%m\%w\                        " File+path
 set statusline+=%9*\ %=                                  " Space
 set statusline+=%8*\ %y\                                 " FileType
 set statusline+=%7*\ %{(&fenc!=''?&fenc:&enc)}\[%{&ff}]\ " Encoding & Fileformat
 set statusline+=%8*\ %-3(%{FileSize()}%)                 " File size
-set statusline+=%0*\ %3p%%\ \ %l:\ %3c\                 " Rownumber/total (%)
+set statusline+=%0*\ %3p%%\ \ %l:\ %3c\                  " Rownumber/total (%)
