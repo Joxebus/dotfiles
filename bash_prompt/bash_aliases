@@ -2,8 +2,11 @@ alias ..1='cd ..'
 alias ..2='cd ../..'
 alias ..3='cd ../../..'
 alias ..4='cd ../../../..'
-alias ls='ls -lFh --sort=extension --color=auto'
-alias lc='ls -lhC --sort=extension --color=auto'
+#alias ls='ls -lFh --sort=extension --color=auto'
+#alias lc='ls -lhC --sort=extension --color=auto'
+#Fanzy ls :)
+alias ls='lsil -lFh --sort=extension'                                                                            
+alias lsil='lsi -l'
 #Configuration files.
 alias vimr='vim ~/.vimrc'
 alias bashr='vim ~/.bashrc && source ~/.bashrc'
@@ -13,7 +16,7 @@ alias esl='sudo vim /etc/apt/sources.list'
 alias rinput='bind -f ~/.inputrc'
 alias rsource='source ~/.bashrc'
 #Directories navigation
-alias dev='cd $HOME/development/'
+alias dev='cd $HOME/develop/'
 alias midgard='cd /media/sigfried/Midgard'
 alias last-dir='cd -'
 #Common stuff or maybe not :)
