@@ -6,7 +6,7 @@ if [ $USER != "root"  ]; then
 fi
 
 if [ "$1" = "up" ]; then
-    	iptables -F
+	iptables -F
 	iptables -P INPUT DROP
 	iptables -A INPUT -p tcp --dport 22 -j ACCEPT
 	iptables -A INPUT -p tcp --dport 10000 -j ACCEPT

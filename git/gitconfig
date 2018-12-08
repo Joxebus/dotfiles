@@ -75,3 +75,5 @@
     untracked = red bold
 [clean]
     requireForce = false
+[credential]
+	helper = store

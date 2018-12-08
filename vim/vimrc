@@ -7,10 +7,11 @@ filetype plugin indent on
 set t_Co=256
 
 "Settings for tabs and spaces
-set tabstop=2 "number of visual spaces for TAB
+set tabstop=4 "number of visual spaces for TAB
 set softtabstop=2 "number of spaces per TAB when editing
-set expandtab "tabs are spaces 
-
+set expandtab "tabs are spaces
+set list
+set listchars=tab:›\ ,eol:¬,trail:⋅
 "UI setting
 set cursorline
 set wildmenu "Autocomplete directories & files when editing AWESOME!!

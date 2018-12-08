@@ -7,6 +7,7 @@ alias ..4='cd ../../../..'
 #Fanzy ls :)
 alias ls='lsil -lFh --sort=extension'                                                                            
 alias lsil='lsi -l'
+alias lsc='lsil -lFhC --sort=extension'
 #Configuration files.
 alias vimr='vim ~/.vimrc'
 alias bashr='vim ~/.bashrc && source ~/.bashrc'
@@ -46,5 +47,6 @@ export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
 
 alias find_lost_souls="nmap -n  -p3128 10.8.0.0/16 --open --oG - -T4 | grep squid | grep -Po 'Host: \K\d.*?(?= )' | xargs -n 1 -I host bash -c 'if curl --proxy1.0 host:3128 --silent --head http://www.google.com/ | grep \"Location:http://www.google.com.cu/\" > /dev/null ; then echo host; fi'"
+alias youtube-play='mpsyt'
 
 # vim: set filetype=sh :

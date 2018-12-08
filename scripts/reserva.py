@@ -83,7 +83,6 @@ def consultar_menu(session, username):
         
 
 def main():
-    
     s = requests.session()
     opcion = -1
     print 'Qué desea hacer?'

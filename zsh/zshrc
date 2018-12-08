@@ -4,6 +4,7 @@ source $HOME/antigen.zsh
 antigen use oh-my-zsh
 
 # Antigen plugins
+antigen bundle wd
 antigen bundle git
 antigen bundle colored-man-pages
 antigen bundle ssh-agent
