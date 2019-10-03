@@ -179,7 +179,7 @@ bindsym $mod+Shift+f exec firefox-dev
 bindsym $mod+Shift+d exec code
 
 exec_always $HOME/dotfiles/scripts/monitors_script.sh
-exec_always feh --bg-scale $HOME/Pictures/backgrounds/unsplash.jpg $HOME/Pictures/backgrounds/wow.jpg $HOME/Pictures/backgrounds/stones.jpg
+exec_always feh --bg-scale $HOME/Pictures/backgrounds/unsplash.jpg $HOME/Pictures/backgrounds/unsplash2.jpg $HOME/Pictures/backgrounds/stones.jpg
 
 exec blueman-manager
 exec_always compton -f
