@@ -1,11 +1,11 @@
 [pull]
 	rebase = true
 [user]
-	name  = Rubén Salvador García San Juan
+	name = sigfried
 	email = rssanjuan2704@gmail.com
 [alias]
 #stage
-    how	     = !cat ~/.gitconfig | ack-grep $1
+    how	     = !cat ~/.gitconfig | ack $1
     set	     = add --all
     reset    = reset
     nuke     = !git reset --hard HEAD && git clean -xfd
@@ -28,7 +28,6 @@
     lg1      = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(white) %C(white)%s%C(white) %C(bold cyan)- %an%C(bold yellow)%C(bold yellow)%d%C(reset)' --all
     lg2      = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
     lg       = !"git lg1 | head -30"
-    
     k        = !gitk --all
     g        = !gitg --all
 #navigate
@@ -48,6 +47,10 @@
     integrate = merge --no-ff --no-edit
 #sync
     sync = fetch --prune
+    c = clone
+#submodules
+		cs = clone --recurse-submodules
+		uis = submodule update --init
 #diff
     df   = diff --find-copies-harder
     dfw  = diff --find-copies-harder          --color-words --word-diff-regex="[^[:space:]]|([[:alnum:]]|UTF_8_GUARD)+"
@@ -59,21 +62,28 @@
     color = true
     renames = copy
 [color]
-    ui = auto
+	ui = true
 [color "branch"]
     current = blue reverse bold
     local = blue bold
     remote = green bold
 [color "diff"]
-    meta = blue bold
-    frag = yellow bold
-    old = red bold
-    new = green bold
+	meta = 11
+	frag = magenta bold
+	old = red bold
+	new = green bold
+	commit = yellow bold
+	whitespace = red reverse
 [color "status"]
     added = green bold
     changed = yellow bold
     untracked = red bold
 [clean]
     requireForce = false
-[credential]
-	helper = store
+[core]
+	pager = diff-so-fancy | less --tabs=4 -RFX
+[color "diff-highlight"]
+	oldNormal = red bold
+	oldHighlight = red bold 52
+	newNormal = green bold
+	newHighlight = green bold 22
