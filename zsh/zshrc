@@ -22,8 +22,7 @@ source $HOME/.bash_aliases
 
 # Common configs
 export LANG=en_US.UTF-8
-export GOPATH=$HOME/golang/
-export PATH=$PATH:/usr/local/bin/node/bin:/home/sigfried/.npmglobal/bin/
+export PATH=$PATH:/$HOME/.npmglobal/bin/
 export VISUAL=vim
 export EDITOR=vim
 
@@ -34,14 +33,6 @@ else
   export EDITOR='vim'
 fi
 
-#export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-
-# added by pipsi (https://github.com/mitsuhiko/pipsi)
-#export PATH="/home/sigfried/.local/bin:$HOME/.pyenv/libexec:$PATH"
-
-# fnm
-export PATH=/home/sigfried/.fnm:$PATH
-eval "`fnm env --multi`"
-wd() {
-  . ~/bin/wd/wd.sh
-}
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+source $(dirname $(gem which colorls))/tab_complete.sh
+eval "$(starship init zsh)"
