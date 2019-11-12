@@ -1,0 +1,16 @@
+# Settings
+- defaults:
+    link:
+      create: true
+      relink: true
+      force: true
+
+- shell:
+    # Install submodules
+    - [git submodule update --init --recursive, Installing submodules]
+
+# Symlinks
+- link:
+    ~/.zshrc: zsh/zshrc
+    ~/.gitconfig: git/gitconfig
+    ~/.vimrc: vim/vimrc
