@@ -1,38 +1,12 @@
 # Load plugins
 source ~/.zsh_plugins.sh
 
-setopt BANG_HIST                 # Treat the '!' character specially during expansion.
-setopt EXTENDED_HISTORY          # Write the history file in the ":start:elapsed;command" format.
-setopt INC_APPEND_HISTORY        # Write to the history file immediately, not when the shell exits.
-setopt SHARE_HISTORY             # Share history between all sessions.
-setopt HIST_EXPIRE_DUPS_FIRST    # Expire duplicate entries first when trimming history.
-setopt HIST_IGNORE_DUPS          # Don't record an entry that was just recorded again.
-setopt HIST_IGNORE_ALL_DUPS      # Delete old recorded entry if new entry is a duplicate.
-setopt HIST_FIND_NO_DUPS         # Do not display a line previously found.
-setopt HIST_IGNORE_SPACE         # Don't record an entry starting with a space.
-setopt HIST_SAVE_NO_DUPS         # Don't write duplicate entries in the history file.
-setopt HIST_REDUCE_BLANKS        # Remove superfluous blanks before recording entry.
-setopt HIST_VERIFY               # Don't execute immediately upon history expansion.
-setopt HIST_BEEP                 # Beep when accessing nonexistent history.
+source ~/dotfiles/zsh/env.zsh
 
-# Sourcing extras
-#source ~/.local/share/icons-in-terminal/icons_bash.sh
-#source $HOME/.oh-my-zsh/plugins/zsh-git-prompt/zshrc.sh
-source $HOME/.bash_aliases
+source ~/dotfiles/zsh/options.zsh
+source ~/dotfiles/zsh/functions/functions.zsh
+source ~/dotfiles/zsh/functions/fzf-functions.zsh
+source ~/dotfiles/zsh/functions/git-functions.zsh
 
-# Common configs
-export LANG=en_US.UTF-8
-export PATH=$PATH:/$HOME/.npmglobal/bin/
-export VISUAL=vim
-export EDITOR=vim
+source ~/dotfiles/bash/bash_aliases
 
-#Preferred editor for local and remote sessions
-if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='vim'
-else
-  export EDITOR='vim'
-fi
-
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-source $(dirname $(gem which colorls))/tab_complete.sh
-eval "$(starship init zsh)"
