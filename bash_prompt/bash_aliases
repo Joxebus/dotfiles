@@ -57,4 +57,6 @@ alias ssh-list="ssh-add -l"
 alias ssh-remove="ssh-add -D"
 alias adk="ssh-add $HOME/.ssh/p1stache-rsa"
 alias cat="bat"
+alias dn="dnote"
+alias n="nvim"
 # vim: set filetype=sh :
