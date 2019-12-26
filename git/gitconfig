@@ -48,6 +48,7 @@
 #sync
     sync = fetch --prune
     c = clone
+		fr = !git svn fetch && git svn rebase
 #submodules
 		cs = clone --recurse-submodules
 		uis = submodule update --init
