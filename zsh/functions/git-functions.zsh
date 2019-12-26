@@ -168,9 +168,9 @@ g.() {
   fi
 }
 
-# Create MIT license file for Nikita Voloboev
+# Create MIT license file for sigfried
 mit() {
-  license-up mit Nikita Voloboev nikitavoloboev.xyz
+  license-up mit sigfried sigfried.xyz
   git add LICENSE
 }
 

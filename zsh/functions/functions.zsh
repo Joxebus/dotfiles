@@ -2,6 +2,10 @@
 b() {
 }
 
+wd() {
+   . ~/bin/wd/wd.sh
+}
+
 # install global npm packages to custom dir
 # ig() {
 #   cd $HOME/bin
