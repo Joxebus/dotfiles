@@ -55,6 +55,11 @@ nnoremap <silent> <Leader>nr :NERDTreeRefreshRoot<CR>
 " Remove search highlight
 nnoremap <silent> <Leader>us :noh<CR>
 
+" Work with tabs
+nnoremap <silent> <Leader>n :tabNew<CR>
+nnoremap <silent> <Leader>] :tabnext<CR>
+nnoremap <silent> <Leader>[ :tabprevious<CR>
+
 " Search options
 set ignorecase " Make search insensitive to case
 set smartcase " But smart enough to find both ocurrences :)
