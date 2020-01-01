@@ -38,7 +38,22 @@ call vundle#end()
 
 filetype plugin indent on    " required
 
+" Open NERDTree after init
 autocmd vimenter * NERDTree
+
+" Define mapleader key
+let mapleader = ","
+
+" Highly experimental ( Might break something :( )
+" I'll start mapping some useful keybinds to use (Neo)Vim as my main editor
+" for everything I do
+
+" Toggle NERDTree
+nnoremap <silent> <Leader>nt :NERDTreeToggle<CR>
+" Refresh NERDTree
+nnoremap <silent> <Leader>nr :NERDTreeRefreshRoot<CR>
+" Remove search highlight
+nnoremap <silent> <Leader>us :noh<CR>
 
 " Search options
 set ignorecase " Make search insensitive to case
