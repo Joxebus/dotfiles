@@ -243,7 +243,13 @@ gcd() {
 
 # git clone link in clipboard
 gll(){
-    git clone "$(pbpaste)"
+    OS="$(uname -a | awk '{ print $1 }')"
+    if [[ $OS == 'Darwin' ]]; then
+      git clone "$(pbpaste)"
+    else
+      git clone "$(clipit -c)"
+    fi
+
     # TODO: cd into cloned project (need to extract name with regex)
 }
 
