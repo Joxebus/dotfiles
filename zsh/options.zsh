@@ -1,9 +1,48 @@
 # Completions
-autoload -Uz compinit && compinit # TODO: ?
-# Matches case insensitive for lowercase
-zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
-compdef w=-redirect-,-default-,-default- # Gives w <tab> autocomplete
+autoload -U compinit
+zstyle ':completion:*' menu select
+zmodload zsh/complist
+compinit
+
+# TODO: Do research about next two lines
+#compdef w=-redirect-,-default-,-default- # Gives w <tab> autocomplete
 #zstyle ':completion:*' insert-tab false
+
+# vi mode
+bindkey -v
+export KEYTIMEOUT=1
+
+# vi keybinds in tab complete menu
+bindkey -M menuselect 'h' vi-backward-char
+bindkey -M menuselect 'k' vi-up-line-or-history-char
+bindkey -M menuselect 'l' vi-forward-char
+bindkey -M menuselect 'j' vi-down-line-or-history-char
+bindkey -v '^?' backward-delete-char
+
+# Change cursor shape for different vi modes.
+function zle-keymap-select {
+  if [[ ${KEYMAP} == vicmd ]] ||
+     [[ $1 = 'block' ]]; then
+    echo -ne '\e[1 q'
+  elif [[ ${KEYMAP} == main ]] ||
+       [[ ${KEYMAP} == viins ]] ||
+       [[ ${KEYMAP} = '' ]] ||
+       [[ $1 = 'beam' ]]; then
+    echo -ne '\e[5 q'
+  fi
+}
+zle -N zle-keymap-select
+zle-line-init() {
+    zle -K viins # initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)
+    echo -ne "\e[5 q"
+}
+zle -N zle-line-init
+echo -ne '\e[5 q' # Use beam shape cursor on startup.
+preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
+
+# Edit line in vim with ctrl-e:
+autoload edit-command-line; zle -N edit-command-line
+bindkey '^e' edit-command-line
 
 IFS=$' \n\t'
 
@@ -34,10 +73,5 @@ setopt HIST_SAVE_NO_DUPS         # Don't write duplicate entries in the history 
 setopt HIST_REDUCE_BLANKS        # Remove superfluous blanks before recording entry.
 setopt HIST_VERIFY               # Don't execute immediately upon history expansion.
 setopt HIST_BEEP                 # Beep when accessing nonexistent history.
-
-#eval "$(git-hub alias -s)" # git -> hub. TODO: make it work with nix installed git-hub!
-# eval "$(direnv hook zsh)" # Direnv
-
-# export DIRENV_LOG_FORMAT= # Remove logs from direnv
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh # FZF fuzzy search
