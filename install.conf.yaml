@@ -8,6 +8,9 @@
 - shell:
     # Install submodules
     - [git submodule update --init --recursive, Installing submodules]
+    # Setup Vundle.vim
+    - [git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim]
+    - [chsh -s $(which zsh), Make ZSH the default shell]
 
 # Symlinks
 - link:
@@ -15,3 +18,5 @@
     ~/.gitconfig: git/gitconfig
     ~/.vimrc: vim/vimrc
     ~/.npmrc: npm/npmrc
+
+- clean ['~']
