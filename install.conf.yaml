@@ -6,11 +6,9 @@
       force: true
 
 - shell:
-    # Install submodules
-    - [git submodule update --init --recursive, Installing submodules]
-    # Setup Vundle.vim
-    - [git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim]
-    - [chsh -s $(which zsh), Make ZSH the default shell]
+    - [git submodule update --init --recursive, Installing submodules] # Install submodules
+    - [git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm, Clone tmux plugin manager]
+      #    - [chsh -s $(which zsh), Make ZSH the default shell]
 
 # Symlinks
 - link:
@@ -18,5 +16,6 @@
     ~/.gitconfig: git/gitconfig
     ~/.vimrc: vim/vimrc
     ~/.npmrc: npm/npmrc
+    ~/.tmux.conf: tmux/tmux.conf
 
-- clean ['~']
+- clean: ['~']
