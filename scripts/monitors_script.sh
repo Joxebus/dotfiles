@@ -1,5 +1,5 @@
 #!/bin/bash
-primary=eDP-1
+primary=LVDS1
 monitor1=DVI-I-2-2
 monitor2=DVI-I-1-1
 monitor2_rotation=right

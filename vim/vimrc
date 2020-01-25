@@ -1,15 +1,28 @@
-set nocompatible              " be iMproved, required
-filetype off                  " required
+" filetype off                  " required
 set encoding=UTF-8
 
-set tabstop=2 shiftwidth=2 expandtab
+set shiftwidth=2 " Avoid huge Vim's default tabs, use 4 to indent
+let &softtabstop= &shiftwidth
+set expandtab " Convert tabs to spaces
+
+set wildmenu " Command-line completion enhaced mode
+
 " I must see the lines!!
 set number
 " Render whitespaces :)
-set listchars=tab:..,trail:~,extends:>,precedes:<
-set list
+" set listchars=tab:>-,extends:>,precedes:<,space:.
+" set list
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
+
+" Should set this before plugin is loaded
+let g:ale_completion_enabled = 1
+let g:ale_set_balloons = 1
+
+" Set autocompletion to ALE's default
+set omnifunc=ale#completion#OmniFunc
+
+" let g:ale_completion_tsserver_autoimport = 1
 
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
@@ -28,10 +41,22 @@ Plugin 'dense-analysis/ale'
 Plugin 'ryanoasis/vim-devicons'
 call vundle#end()
 
-filetype plugin indent on    " required
+" Filetype detection, filetype options detection, auto-indent detection
+filetype plugin indent on
+
+" Identation
+set autoindent
+
+" Enable Vim's syntax highlighting
+syntax enable
+
+" Allows to edit another file even if we haven't saved current file's changes
+set hidden
 
 " Open NERDTree after init
 autocmd vimenter * NERDTree
+" Show hidden files
+let NERDTreeShowHidden=1
 
 " Define mapleader key
 let mapleader = ","
@@ -47,35 +72,35 @@ nnoremap <silent> <Leader>nr :NERDTreeRefreshRoot<CR>
 " Remove search highlight
 nnoremap <silent> <Leader>us :noh<CR>
 
+" Cycle between open buffers
+nnoremap <leader>l :ls<CR>:b<space>
+
 " Work with tabs
 nnoremap <silent> <Leader>n :tabNew<CR>
 nnoremap <silent> <Leader>] :tabnext<CR>
 nnoremap <silent> <Leader>[ :tabprevious<CR>
+
+" .vimrc reload
+nnoremap <silent> <Leader>rc :w\|:source %<CR>
 
 " Search options
 set ignorecase " Make search insensitive to case
 set smartcase " But smart enough to find both ocurrences :)
 set incsearch " Highlight matching search
 
-" vim-arline plugin will handle linting errors
-let g:airline#extensions#ale#enabled = 1
-
 set statusline=%{FugitiveStatusline()}
-
-syntax enable
 
 " Use darcula as my main color scheme
 colorscheme darcula
 
 " ALE configs
+"
+" For all files, remove trailing lines & whitespaces
 let g:ale_fixers = {
-  \ '*': ['remove_trailing_lines', 'trim_whitespace'],
-  \ 'javascript': ['prettier', 'eslint'],
-  \ 'jsx' : ['prettier', 'eslint'],
-  \ 'javascript.jsx' : ['prettier', 'eslint'],
-  \ 'vue': ['prettier', 'eslint'],
-  \ 'javascriptreact': ['prettier-eslint', 'prettier', 'eslint'],
-\ }
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\}
 let g:ale_fix_on_save = 1
 let g:ale_sign_error = '✕'
 let g:ale_sign_warning = '•'
+" Activate Fix on save
+let g:ale_fix_on_save= 1
