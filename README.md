@@ -13,4 +13,4 @@
 ## Based on
 [Nikita's dotfile](https://github.com/nikitavoloboev/dotfiles)
 
-[![MIT](https://img.shields.io/badge/license-MIT-0a0a0a.svg?style=flat&colorA=0a0a0a)](LICENSE)jj
+[![MIT](https://img.shields.io/badge/license-MIT-0a0a0a.svg?style=flat&colorA=0a0a0a)](LICENSE)
