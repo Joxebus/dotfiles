@@ -31,14 +31,14 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'xuyuanp/nerdtree-git-plugin'
 Plugin 'vim-airline/vim-airline'
 Plugin 'scrooloose/nerdcommenter'
-Plugin 'elzr/vim-json'
-Plugin 'mattn/emmet-vim'
 Plugin 'Yggdroot/indentLine'
 Plugin 'yuezk/vim-js'
 Plugin 'maxmellon/vim-jsx-pretty'
 Plugin 'dense-analysis/ale'
 Plugin 'ryanoasis/vim-devicons'
 Plugin 'dracula/vim', {'name': 'dracula'}
+Plugin 'tpope/vim-surround'
+Plugin 'jiangmiao/auto-pairs'
 call vundle#end()
 
 " Filetype detection, filetype options detection, auto-indent detection
@@ -83,8 +83,10 @@ nnoremap <silent> <Leader>n :tabNew<CR>
 nnoremap <silent> <Leader>] :tabnext<CR>
 nnoremap <silent> <Leader>[ :tabprevious<CR>
 
-" .vimrc reload
-nnoremap <silent> <Leader>rc :w\|:source %<CR>
+" .vimrc reload withing .vimrc
+nnoremap <silent> <Leader>rf :w\|:source %<CR>
+" .vimrc reload outside .vimrc
+nnoremap <silent> <Leader>rc :w\|:source ~/.vimrc<CR>
 
 " Search options
 set ignorecase " Make search insensitive to case
@@ -102,7 +104,7 @@ set statusline=%{FugitiveStatusline()}
 " Set coloring?
 syntax enable
 
-" Set colorschem
+" Set colorscheme
 colorscheme dracula
 
 " ALE configs
@@ -111,7 +113,6 @@ colorscheme dracula
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \}
-let g:ale_fix_on_save = 1
 let g:ale_sign_error = '✕'
 let g:ale_sign_warning = '•'
 " Activate Fix on save
