@@ -1,6 +1,6 @@
 # sigfried's dotfiles. 
 
-## Contain command prompt utilities, command prompt customization and some useful scripts.
+### The configurations I use in my workstations, both MacOS and Linux.
 ![](https://i.imgur.com/0431KrD.png)
 
 ## How to install:
